@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\MessagesReceived;
 use Illuminate\Support\Facades\Mail;
 
-class MessagesController extends Controller
+class MessageController extends Controller
 {
     public function store(){
         $message = request()->validate([
@@ -18,6 +18,6 @@ class MessagesController extends Controller
         //Enviar Emails
         Mail::to('urielreyes514@gmail.com')->send(new MessagesReceived($message));
         
-        return "Mensaje Enviado";
+        return back()->with('success','Recibimos tu mensaje te responderemos en menos de 24hrs.');
     }
 }
